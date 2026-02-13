@@ -8,3 +8,7 @@ def health():
 @app.get(  "/hello"  ) 
 def hello(name: str =  "world"  ): 
     return {  "message"  : f"Hello, {name}!"  } 
+
+@app.get(  "/Dali"  ) 
+def Dali(name: str =  "Dali"  ): 
+    return {  "message"  : f"Hello, {name}!"  } 
