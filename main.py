@@ -1,3 +1,5 @@
+from sduop_be.admin.authz_status.routes import router as status_router
+
 from fastapi import FastAPI 
 app = FastAPI(title=  "Backend Service"  , version=  "1.0.0"  ) 
 
@@ -12,3 +14,5 @@ def hello(name: str =  "world"  ):
 @app.get(  "/Dali"  ) 
 def Dali(name: str =  "Dali"  ): 
     return {  "message"  : f"Hello, {name}!"  } 
+
+app.include_router(status_router, prefix="/data_status", tags=["data_status"])
