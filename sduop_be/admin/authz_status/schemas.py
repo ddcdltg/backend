@@ -1,12 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
-class DataTableOut(BaseModel):
-    draw: int
-    recordsTotal: int
-    recordsFiltered: int
-    data: List[StatusOut]
-
 class StatusOut(BaseModel):
     status_id: int   
     name: str       
@@ -16,3 +10,10 @@ class StatusOut(BaseModel):
     class Config:
         from_attributes = True
         extra = "forbid"
+        
+class DataTableOut(BaseModel):
+    draw: int
+    recordsTotal: int
+    recordsFiltered: int
+    data: List[StatusOut]
+
