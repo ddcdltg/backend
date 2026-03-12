@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from authz.current_user import CurrentUser
 from utils.datatable_utils import  DTParams
 from typing import List, Dict, Any
-from sduop_be.admin.authz_status.dt_config import get_all_status_s
+from sduop_be.admin.authz_status.services import get_all_status_s
 from authz.filters.auth import get_auth
 from sduop_be.admin.authz_status.dt_config import STATUS_DT_CFG
 import logging
