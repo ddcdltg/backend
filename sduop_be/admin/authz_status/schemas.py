@@ -17,3 +17,8 @@ class DataTableOut(BaseModel):
     recordsFiltered: int
     data: List[StatusOut]
 
+class StatusResponse(BaseModel):
+    httpCode: int
+    error_message: str
+    message: str
+    response: DataTableOut
