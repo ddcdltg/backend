@@ -1,5 +1,5 @@
 from sqlalchemy import func
-from sduop_be.admin.authz_status.models import Status
+from bitacora.models import Status
 from utils.datatable_utils import DTConfig
 
 
