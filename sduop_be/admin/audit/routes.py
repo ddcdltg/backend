@@ -36,7 +36,7 @@ async def audit_events_dt_r(
     )
 
 
-@router.get("/audit/event/{event_id}", summary="Detalle de un evento", response_model=AuditDetailResponse)
+@router.get("/audit/event", summary="Detalle de un evento", response_model=AuditDetailResponse)
 async def audit_event_detail_r(
     event_id: str,
     v: int,
