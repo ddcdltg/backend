@@ -1,6 +1,15 @@
 from utils.datatable_utils import DTConfig
 from bitacora.models import AuditAdmin
 
+# Mapa de tablas por módulo — agrega aquí cada módulo que quieras auditar
+AUDIT_TABLE_MAP = {
+    "users":        "audit_users",
+    "roles":        "audit_roles",
+    "permisos":     "audit_permisos",
+    "estatus":      "audit_estatus",
+    "audit_*":      "audit_log",   # fallback / vista global
+}
+
 GLOBAL_BITACORA_CFG = DTConfig(
     pk_col=AuditAdmin.event_id,
     orderable_map={
