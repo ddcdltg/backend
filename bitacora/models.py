@@ -114,3 +114,5 @@ class Status(Base):
                        comment="ID del estatus (tinyint 0-255)")
     status_name = Column(String(100), unique=True, comment="Nombre único del estatus")
     status_description = Column(String(255), nullable=True, comment="Descripción opcional del estatus")
+
+    

@@ -59,3 +59,4 @@ def get_all_status_s(
                 resource_id=resource_id,
                 serialize_fn=serialize_status_records
         )
+    

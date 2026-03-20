@@ -7,9 +7,10 @@ from utils.datatable_utils import  DTParams
 from sduop_be.admin.authz_status.controllers import get_all_status_c
 import logging
 
-router = APIRouter()
+router = APIRouter() #importar librería
 logger = logging.getLogger("status_r")
 
+#@router llama a la api, .post es el método, url para llegar al backend, summary es para testing, response model se pone siempre
 @router.post("/status", summary="Obtener todos los estatus (datatable)", response_model=StatusResponse)
 async def get_all_status_r(
     v: int,

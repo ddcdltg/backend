@@ -19,7 +19,6 @@ def get_all_status_c(
         current_user:CurrentUser, 
         db: Session
 ) -> List[Dict[str, Any]]:
-    
     case, resource_id= get_auth(
         db=db,
         current_user=current_user,
@@ -27,7 +26,7 @@ def get_all_status_c(
         obj_prefix=STATUS_RESOURCE,
         action=READ
     )
-
+    
     result = get_all_status_s(
         case=case, 
         view_id=view_id,

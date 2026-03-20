@@ -1,0 +1,36 @@
+info:
+  name: bitacora
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://127.0.0.1:9002/data_status/status?v=15
+  params:
+    - name: v
+      value: "15"
+      type: query
+  body:
+    type: json
+    data: |-
+      {
+        "draw": 1,
+        "start": 0,
+        "length": 10,
+        "search": { "value": "" },
+        "order": [{ "column": 0, "dir": "asc" }],
+        "columns": [
+          { "data": "id" },
+          { "data": "name" },
+          { "data": "description" }
+        ]
+      }
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiVXN1YXJpbyBQcnVlYmEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTAwMDAwMDB9.dGVzdF9zaWduYXR1cmFfbm9fdmFsaWRh
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
