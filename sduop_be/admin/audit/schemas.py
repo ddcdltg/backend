@@ -16,7 +16,7 @@ class AuditTable(BaseModel):
     field_name: Optional[str] = None
     value: Optional[str] = None
     meta: Optional[str] = None
-    audit_source: str | None = None
+    audit_source: Optional[str] = None
 
     class Config:
         from_attributes = True
