@@ -14,6 +14,7 @@ AUDIT_TABLE_MAP = {
 GLOBAL_BITACORA_CFG = DTConfig(
     pk_col=AuditAdmin.event_id,
     orderable_map={
+        "audit_id":    AuditAdmin.audit_id,
         "event_id":    AuditAdmin.event_id,
         "created_at":  AuditAdmin.created_at,
         "actor_id":    AuditAdmin.actor_id,
@@ -31,7 +32,7 @@ GLOBAL_BITACORA_CFG = DTConfig(
         AuditAdmin.ip_address,
     ],
     default_order_col=AuditAdmin.created_at,
-    audit_table_map=AUDIT_TABLE_MAP,   # <-- campo extra para validar módulos
+    default_order_col=AuditAdmin.audit_id,
 )
 
 from utils.datatable_utils import DTConfig
