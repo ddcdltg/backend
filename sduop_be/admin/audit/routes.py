@@ -10,14 +10,14 @@ from sduop_be.admin.audit.controllers import (
     audit_actions_c,
     audit_actors_c,
 )
-from sduop_be.admin.audit.schemas import AuditTable, AuditDetailResponse, AuditCatalogResponse
+from sduop_be.admin.audit.schemas import AuditDTResponse, AuditDetailResponse, AuditCatalogResponse
 import logging
 
 router = APIRouter(prefix="/data_bitacora", tags=["Bitacora"])
 logger = logging.getLogger("bitacora_r")
 
 
-@router.post("/audit", summary="Consultar bitácora (datatable)", response_model=AuditTable)
+@router.post("/audit", summary="Consultar bitácora (datatable)", response_model=AuditDTResponse)
 async def audit_events_dt_r(
     v: int,
     request: Request,
