@@ -10,7 +10,7 @@ from sduop_be.admin.audit.controllers import (
     audit_actions_c,
     audit_actors_c,
 )
-from sduop_be.admin.audit.schemas import AuditDTResponse, AuditDetailResponse, AuditCatalogResponse
+from sduop_be.admin.audit.schemas import AuditDTResponse, AuditDetailResponse
 import logging
 
 router = APIRouter(prefix="/data_bitacora", tags=["Bitacora"])
