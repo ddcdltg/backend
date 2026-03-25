@@ -23,7 +23,7 @@ GLOBAL_BITACORA_CFG = DTConfig(
         "ip_address":  AuditAdmin.ip_address,
         "view_id":     AuditAdmin.view_id,
     },
-    searchable_cols=[
+    searchable_cols=[ #falta por fecha y por registro 
         AuditAdmin.event_id,
         AuditAdmin.action,
         AuditAdmin.table_name,

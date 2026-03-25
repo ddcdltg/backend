@@ -37,14 +37,27 @@ def audit_events_dt_s(
     *,
     case: int,
     view_id: int,
+    params: dict,
     resource_id: int,
     current_user: CurrentUser,
     db: Session,
     dt_params: Optional[DTParams] = None,
     dt_cfg: Optional[DTConfig] = None,
-    filters: Optional[dict] = None,
-    module: str = "audit_*",
+    
 ) -> Union[List[Dict], Dict[str, Any]]:
+    
+    module = (params.get("module") or "").strip() or "audit_*"
+
+    filters = {
+        "action":     params.get("action"),
+        "actor_id":   params.get("actor_id"),
+        "record_id":  params.get("record_id"),
+        "ip":         params.get("ip"),
+        "date_from":  params.get("date_from"),
+        "date_to":    params.get("date_to"),
+        "event_id":   params.get("event_id"),
+        "table_name": params.get("table_name"),
+    }
 
     filters = filters or {}
 
@@ -121,3 +134,4 @@ def audit_actors_s(*, db: Session) -> List[int]:
         .all()
     )
     return [r.actor_id for r in rows]
+#

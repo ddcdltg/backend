@@ -31,28 +31,14 @@ def audit_events_dt_c(
         action=READ,
     )
 
-    module = (params.get("module") or "").strip() or "audit_*"
-
-    filters = {
-        "action":     params.get("action"),
-        "actor_id":   params.get("actor_id"),
-        "record_id":  params.get("record_id"),
-        "ip":         params.get("ip"),
-        "date_from":  params.get("date_from"),
-        "date_to":    params.get("date_to"),
-        "event_id":   params.get("event_id"),
-        "table_name": params.get("table_name"),
-    }
-
     result = audit_events_dt_s(
         case=case,
         view_id=view_id,
+        params = params,
         resource_id=resource_id,
         current_user=current_user,
         db=db,
         dt_params=dt_params,
-        filters=filters,
-        module=module,
         dt_cfg=GLOBAL_BITACORA_CFG,
     )
 
@@ -111,43 +97,3 @@ def audit_event_detail_c(
         "response":      rows,
     }
 
-def audit_modules_c(*, view_id: int, current_user: CurrentUser, db: Session) -> dict:
-    get_auth(
-        db=db, current_user=current_user,
-        view_id=view_id, obj_prefix=AUDIT_RESOURCE, action=READ,
-    )
-    modules = audit_modules_s(db=db)
-    return {
-        "httpCode":      HTTP_200_OK,
-        "error_message": "",
-        "message":       "Módulos obtenidos correctamente",
-        "response":      modules,
-    }
-
-
-def audit_actions_c(*, view_id: int, current_user: CurrentUser, db: Session) -> dict:
-    get_auth(
-        db=db, current_user=current_user,
-        view_id=view_id, obj_prefix=AUDIT_RESOURCE, action=READ,
-    )
-    actions = audit_actions_s(db=db)
-    return {
-        "httpCode":      HTTP_200_OK,
-        "error_message": "",
-        "message":       "Acciones obtenidas correctamente",
-        "response":      actions,
-    }
-
-
-def audit_actors_c(*, view_id: int, current_user: CurrentUser, db: Session) -> dict:
-    get_auth(
-        db=db, current_user=current_user,
-        view_id=view_id, obj_prefix=AUDIT_RESOURCE, action=READ,
-    )
-    actors = audit_actors_s(db=db)
-    return {
-        "httpCode":      HTTP_200_OK,
-        "error_message": "",
-        "message":       "Actores obtenidos correctamente",
-        "response":      actors,
-    }

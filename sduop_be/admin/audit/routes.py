@@ -54,28 +54,3 @@ async def audit_event_detail_r(
     )
 
 
-@router.get("/audit/modules", summary="Listado de módulos (table_name distinct)")
-async def audit_modules_r(
-    v: int,
-    current_user: CurrentUser = Depends(get_current_user),
-    db: Session = Depends(get_db),
-):
-    return audit_modules_c(view_id=v, current_user=current_user, db=db)
-
-
-@router.get("/audit/actions", summary="Listado de acciones (action distinct)")
-async def audit_actions_r(
-    v: int,
-    current_user: CurrentUser = Depends(get_current_user),
-    db: Session = Depends(get_db),
-):
-    return audit_actions_c(view_id=v, current_user=current_user, db=db)
-
-
-@router.get("/audit/actors", summary="Listado de actores (actor_id distinct)")
-async def audit_actors_r(
-    v: int,
-    current_user: CurrentUser = Depends(get_current_user),
-    db: Session = Depends(get_db),
-):
-    return audit_actors_c(view_id=v, current_user=current_user, db=db)
