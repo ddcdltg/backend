@@ -48,18 +48,22 @@ def audit_events_dt_s(
     
     module = (params.get("module") or "").strip() or "audit_*"
 
+    raw_filters = params.get("filters", {})
+
     filters = {
-        "action":     params.get("action"),
-        "actor_id":   params.get("actor_id"),
-        "record_id":  params.get("record_id"),
-        "ip":         params.get("ip"),
-        "date_from":  params.get("date_from"),
-        "date_to":    params.get("date_to"),
-        "event_id":   params.get("event_id"),
-        "table_name": params.get("table_name"),
+        "action":     raw_filters.get("action"),
+        "actor_id":   raw_filters.get("actor_id"),
+        "record_id":  raw_filters.get("record_id"),
+        "ip":         raw_filters.get("ip"),
+        "date_from":  raw_filters.get("date_from"),
+        "date_to":    raw_filters.get("date_to"),
+        "event_id":   raw_filters.get("event_id"),
+        "table_name": raw_filters.get("table_name"),
     }
 
-    filters = filters or {}
+    logger.warning("PARAMS: %s", params)
+    logger.warning("RAW FILTERS: %s", raw_filters)
+    logger.warning("FILTERS: %s", filters)
 
     # Si el módulo es específico filtra por table_name
     if module and module != "audit_*":
