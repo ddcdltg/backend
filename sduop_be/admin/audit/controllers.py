@@ -6,7 +6,7 @@ from sduop_be.admin.audit.services import audit_events_dt_s, audit_event_detail_
 from sduop_be.admin.audit.dt_config import GLOBAL_BITACORA_CFG, AUDIT_TABLE_MAP
 from starlette.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 import logging
-from sduop_be.admin.audit.services import audit_events_dt_s, audit_event_detail_s, audit_modules_s, audit_actions_s, audit_actors_s
+from sduop_be.admin.audit.services import audit_events_dt_s, audit_event_detail_s
 
 logger = logging.getLogger("bitacora_c")
 

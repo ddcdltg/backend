@@ -5,10 +5,7 @@ from authz.current_user import get_current_user, CurrentUser
 from utils.datatable_utils import DTParams
 from sduop_be.admin.audit.controllers import (
     audit_events_dt_c,
-    audit_event_detail_c,
-    audit_modules_c,
-    audit_actions_c,
-    audit_actors_c,
+    audit_event_detail_c
 )
 from sduop_be.admin.audit.schemas import AuditDTResponse, AuditDetailResponse
 import logging
