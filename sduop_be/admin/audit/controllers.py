@@ -2,11 +2,10 @@ from sqlalchemy.orm import Session
 from authz.current_user import CurrentUser
 from authz.filters.auth import get_auth
 from utils.datatable_utils import DTParams
-from sduop_be.admin.audit.services import audit_events_dt_s, audit_event_detail_s
+from sduop_be.admin.audit.services import audit_events_dt_s, audit_event_detail_s, get_list_entities_s
 from sduop_be.admin.audit.dt_config import GLOBAL_BITACORA_CFG, AUDIT_TABLE_MAP
 from starlette.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 import logging
-from sduop_be.admin.audit.services import audit_events_dt_s, audit_event_detail_s
 from sduop_be.admin.audit.schemas import EntitiesPartialOut
 
 logger = logging.getLogger("bitacora_c")

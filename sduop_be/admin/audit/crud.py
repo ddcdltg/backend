@@ -5,15 +5,19 @@ from bitacora.models import AuditAdmin
 
 def get_list_entities_db(db: Session):
     try:
-        result = (
+        rows = (
             db.query(distinct(AuditAdmin.table_name.label("name")))
             .all()
         )
 
-        # Convertir de lista de tuplas a lista simple
-        entities = [row[0] for row in result]
-
-        return entities
+    
+        return [
+            {
+                "entity_id": row.name,
+                "name": row.name
+            }
+            for row in rows
+        ]
 
     except Exception as e:
         print(f"Error al obtener entidades: {e}")

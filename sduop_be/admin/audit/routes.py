@@ -51,7 +51,7 @@ async def audit_event_detail_r(
         db=db,
     )
 
-@router.get("/entities", summary="Obtener las entidades de la bitácora", response_model=[EntitiesDetailResponse])
+@router.get("/entities", summary="Obtener las entidades de la bitácora", response_model=EntitiesDetailResponse)
 def get_all_entities_r(
     v: int,
     current_user: CurrentUser = Depends(get_current_user),
