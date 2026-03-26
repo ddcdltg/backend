@@ -74,3 +74,17 @@ class AuditDetailResponse(BaseModel):
     error_message: str
     message:       str
     response:      List[AuditLogDetailOut]
+
+class EntitiesPartialOut(BaseModel):
+    entity_id: str
+    name: str
+
+    class Config:
+        from_attributes = True
+        extra = "forbid"
+
+class EntitiesDetailResponse(BaseModel):
+    httpCode:      int
+    error_message: str
+    message:       str
+    response:      List[EntitiesPartialOut]

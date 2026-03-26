@@ -3,6 +3,7 @@ from authz.current_user import CurrentUser
 from utils.datatable_utils import DTParams, DTConfig, apply_datatable_pipeline
 from typing import Optional, List, Dict, Any, Union
 from bitacora.models import AuditAdmin
+from sduop_be.admin.audit.crud import get_list_entities_db
 from sduop_be.admin.audit.utils import serialize_audit_records, serialize_audit_detail
 import logging
 
@@ -138,4 +139,9 @@ def audit_actors_s(*, db: Session) -> List[int]:
         .all()
     )
     return [r.actor_id for r in rows]
-#
+
+
+def get_list_entities_s(*, db: Session): 
+    result = get_list_entities_db(db)
+
+    return result

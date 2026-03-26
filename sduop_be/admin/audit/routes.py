@@ -5,9 +5,10 @@ from authz.current_user import get_current_user, CurrentUser
 from utils.datatable_utils import DTParams
 from sduop_be.admin.audit.controllers import (
     audit_events_dt_c,
-    audit_event_detail_c
+    audit_event_detail_c,
+    get_list_entities_c
 )
-from sduop_be.admin.audit.schemas import AuditDTResponse, AuditDetailResponse
+from sduop_be.admin.audit.schemas import AuditDTResponse, AuditDetailResponse, EntitiesDetailResponse
 import logging
 
 router = APIRouter(prefix="/data_bitacora", tags=["Bitacora"])
@@ -50,4 +51,14 @@ async def audit_event_detail_r(
         db=db,
     )
 
-
+@router.get("/entities", summary="Obtener las entidades de la bitácora", response_model=[EntitiesDetailResponse])
+def get_all_entities_r(
+    v: int,
+    current_user: CurrentUser = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Retorna todas las entidades de la bitácora
+    """
+    logger.debug(f"[get_all_entities_r] Consultando lista de entidades, vista: {v}")
+    return get_list_entities_c(v, current_user, db)
