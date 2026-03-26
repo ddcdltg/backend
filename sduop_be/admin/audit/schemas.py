@@ -88,3 +88,17 @@ class EntitiesDetailResponse(BaseModel):
     error_message: str
     message:       str
     response:      List[EntitiesPartialOut]
+
+class ActionsPartialOut(BaseModel):
+    action_id: str
+    name: str
+
+    class Config:
+        from_attributes = True
+        extra = "forbid"
+
+class ActionsDetailResponse(BaseModel):
+    httpCode:      int
+    error_message: str
+    message:       str
+    response:      List[ActionsPartialOut]

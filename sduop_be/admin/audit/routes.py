@@ -6,9 +6,10 @@ from utils.datatable_utils import DTParams
 from sduop_be.admin.audit.controllers import (
     audit_events_dt_c,
     audit_event_detail_c,
-    get_list_entities_c
+    get_list_entities_c,
+    get_list_actions_c
 )
-from sduop_be.admin.audit.schemas import AuditDTResponse, AuditDetailResponse, EntitiesDetailResponse
+from sduop_be.admin.audit.schemas import AuditDTResponse, AuditDetailResponse, EntitiesDetailResponse, ActionsDetailResponse
 import logging
 
 router = APIRouter(prefix="/data_bitacora", tags=["Bitacora"])
@@ -62,3 +63,16 @@ def get_all_entities_r(
     """
     logger.debug(f"[get_all_entities_r] Consultando lista de entidades, vista: {v}")
     return get_list_entities_c(v, current_user, db)
+
+@router.get("/actions", summary="Obtener las acciones de la bitácora", response_model=ActionsDetailResponse)
+def get_all_actions_r(
+    v: int,
+    current_user: CurrentUser = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Retorna todas las acciones de la bitácora
+    """
+    logger.debug(f"[get_all_actions_r] Consultando lista de acciones, vista: {v}")
+    return get_list_actions_c(v, current_user, db)
+

@@ -2,11 +2,11 @@ from sqlalchemy.orm import Session
 from authz.current_user import CurrentUser
 from authz.filters.auth import get_auth
 from utils.datatable_utils import DTParams
-from sduop_be.admin.audit.services import audit_events_dt_s, audit_event_detail_s, get_list_entities_s
+from sduop_be.admin.audit.services import audit_events_dt_s, audit_event_detail_s, get_list_entities_s, get_list_actions_s
 from sduop_be.admin.audit.dt_config import GLOBAL_BITACORA_CFG, AUDIT_TABLE_MAP
 from starlette.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 import logging
-from sduop_be.admin.audit.schemas import EntitiesPartialOut
+from sduop_be.admin.audit.schemas import EntitiesPartialOut, ActionsPartialOut
 
 logger = logging.getLogger("bitacora_c")
 
@@ -116,5 +116,26 @@ def get_list_entities_c(view_id: int, current_user, db: Session):
         "httpCode":      HTTP_200_OK,
         "error_message": "",
         "message":       "Entidades obtenidas correctamente",
+        "response":      result,
+    }
+
+def get_list_actions_c(view_id: int, current_user, db: Session):
+    
+    case, resource_id = get_auth(
+        db=db,
+        current_user=current_user,
+        view_id=view_id,
+        obj_prefix=AUDIT_RESOURCE,
+        action=READ,
+    )
+ 
+    obj_list = get_list_actions_s(db=db)
+    logger.debug("[get_list_actions_c] obj_list=%s", obj_list)
+    result = [ActionsPartialOut.model_validate({"action_id": r["action_id"], "name": r["name"]}) for r in obj_list]
+
+    return {
+        "httpCode":      HTTP_200_OK,
+        "error_message": "",
+        "message":       "Acciones obtenidas correctamente",
         "response":      result,
     }

@@ -25,3 +25,25 @@ def get_list_entities_db(db: Session):
     except Exception as e:
         logger.error(f"Error obteniendo entidades: {e}")
         return []
+    
+def get_list_actions_db(db: Session):
+    try:
+        rows = (
+            db.query(AuditAdmin.action.label("action"))
+            .distinct()
+            .all()
+        )
+
+        logger.debug(f"Consultando lista de acciones: {rows}")
+
+        return [
+            {
+                "action_id": row.action,
+                "name": row.action
+            }
+            for row in rows
+        ]
+
+    except Exception as e:
+        logger.error(f"Error obteniendo acciones: {e}")
+        return []
