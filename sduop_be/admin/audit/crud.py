@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import distinct
 from bitacora.models import AuditAdmin 
-
+import logging
+logger = logging.getLogger("bitacora_db")
 
 def get_list_entities_db(db: Session):
     try:
@@ -10,7 +11,8 @@ def get_list_entities_db(db: Session):
             .all()
         )
 
-    
+        logger.debug(f"Consultando lista de entidades: {rows}")
+
         return [
             {
                 "entity_id": row.name,
@@ -20,5 +22,5 @@ def get_list_entities_db(db: Session):
         ]
 
     except Exception as e:
-        print(f"Error al obtener entidades: {e}")
+
         return []
