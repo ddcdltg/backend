@@ -108,7 +108,7 @@ def get_list_entities_c(view_id: int, current_user, db: Session):
         action=READ,
     )
  
-    obj_list = get_list_entities_s(current_user.user_id, current_user.unit_id, case, db)
+    obj_list = get_list_entities_s(db=db)
     logger.debug("[get_list_entities_c] obj_list=%s", obj_list)
     result = [EntitiesPartialOut.model_validate({"entity_id": r[0], "name": r[1]}) for r in obj_list]
 
