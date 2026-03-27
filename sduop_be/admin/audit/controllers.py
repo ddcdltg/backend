@@ -140,7 +140,7 @@ def get_list_actions_c(view_id: int, current_user, db: Session):
         "response":      result,
     }
 #cambiar el nombre mayus
-def get_ist_records_c(entity: str, view_id: int, current_user, db: Session):
+def get_list_records_c(entity: str, view_id: int, current_user, db: Session):
     
     case, resource_id = get_auth(
         db=db,
