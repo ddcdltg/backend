@@ -152,7 +152,7 @@ def get_list_records_c(entity: str, view_id: int, current_user, db: Session):
  
     obj_list = get_list_records_s(entity=entity, db=db)
     logger.debug("[get_list_records_c] obj_list=%s", obj_list)
-    result = [RecordsPartialOut.model_validate({"record_id": r["record_id"]}) for r in obj_list]
+    result = [RecordsPartialOut.model_validate({"record_id": str(r["record_id"])}) for r in obj_list]
 
     return {
         "httpCode":      HTTP_200_OK,
