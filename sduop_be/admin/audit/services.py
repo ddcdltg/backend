@@ -154,4 +154,6 @@ def get_list_actions_s(*, db: Session):
 def get_list_records_s(*,entity: str, db: Session): 
     result = get_list_records_db(entity, db)
 
+    logger.debug(f"Imprimir resultado: {result}")
+
     return result
