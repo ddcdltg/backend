@@ -7,9 +7,10 @@ from sduop_be.admin.audit.controllers import (
     audit_events_dt_c,
     audit_event_detail_c,
     get_list_entities_c,
-    get_list_actions_c
+    get_list_actions_c,
+    get_list_records_c
 )
-from sduop_be.admin.audit.schemas import AuditDTResponse, AuditDetailResponse, EntitiesDetailResponse, ActionsDetailResponse
+from sduop_be.admin.audit.schemas import AuditDTResponse, AuditDetailResponse, EntitiesDetailResponse, ActionsDetailResponse, RecordsDetailResponse
 import logging
 
 router = APIRouter(prefix="/data_bitacora", tags=["Bitacora"])
@@ -75,4 +76,18 @@ def get_all_actions_r(
     """
     logger.debug(f"[get_all_actions_r] Consultando lista de acciones, vista: {v}")
     return get_list_actions_c(v, current_user, db)
+
+
+@router.get("/records", summary="Obtener los id de los registros de la bitácora", response_model=RecordsDetailResponse)
+def get_all_records_r(
+    id: str,
+    v: int,
+    current_user: CurrentUser = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Retorna todos los id de registros de la bitácora
+    """
+    logger.debug(f"[get_all_records_r] Consultando lista de id de registros, vista: {v}")
+    return get_list_records_c(id, v, current_user, db)
 

@@ -1,11 +1,11 @@
 info:
-  name: entities
+  name: actions
   type: http
-  seq: 5
+  seq: 6
 
 http:
   method: GET
-  url: http://127.0.0.1:9002/data_bitacora/entities?v=15
+  url: http://127.0.0.1:9002/data_bitacora/actions?v=15
   params:
     - name: v
       value: "15"

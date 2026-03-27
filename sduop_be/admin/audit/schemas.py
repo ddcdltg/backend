@@ -102,3 +102,16 @@ class ActionsDetailResponse(BaseModel):
     error_message: str
     message:       str
     response:      List[ActionsPartialOut]
+
+class RecordsPartialOut(BaseModel):
+    record_id: str
+
+    class Config:
+        from_attributes = True
+        extra = "forbid"
+
+class RecordsDetailResponse(BaseModel):
+    httpCode:      int
+    error_message: str
+    message:       str
+    response:      List[RecordsPartialOut]

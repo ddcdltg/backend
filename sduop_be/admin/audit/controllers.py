@@ -6,7 +6,7 @@ from sduop_be.admin.audit.services import audit_events_dt_s, audit_event_detail_
 from sduop_be.admin.audit.dt_config import GLOBAL_BITACORA_CFG, AUDIT_TABLE_MAP
 from starlette.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 import logging
-from sduop_be.admin.audit.schemas import EntitiesPartialOut, ActionsPartialOut
+from sduop_be.admin.audit.schemas import EntitiesPartialOut, ActionsPartialOut, get_list_records_s, RecordsPartialOut
 
 logger = logging.getLogger("bitacora_c")
 
@@ -139,3 +139,25 @@ def get_list_actions_c(view_id: int, current_user, db: Session):
         "message":       "Acciones obtenidas correctamente",
         "response":      result,
     }
+#cambiar el nombre mayus
+def get_ist_records_c(entity: str, view_id: int, current_user, db: Session):
+    
+    case, resource_id = get_auth(
+        db=db,
+        current_user=current_user,
+        view_id=view_id,
+        obj_prefix=AUDIT_RESOURCE,
+        action=READ,
+    )
+ 
+    obj_list = get_list_records_s(entity=entity, db=db)
+    logger.debug("[get_list_records_c] obj_list=%s", obj_list)
+    result = [RecordsPartialOut.model_validate({"record_id": r["record_id"]}) for r in obj_list]
+
+    return {
+        "httpCode":      HTTP_200_OK,
+        "error_message": "",
+        "message":       "Id de registros obtenidos correctamente",
+        "response":      result,
+    }
+

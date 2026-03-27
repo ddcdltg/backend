@@ -47,3 +47,25 @@ def get_list_actions_db(db: Session):
     except Exception as e:
         logger.error(f"Error obteniendo acciones: {e}")
         return []
+    
+def get_list_records_db(entity:str, db: Session):
+    try:
+        rows = (
+            db.query(AuditAdmin.record_id.label("record_id"))
+            .filter(AuditAdmin.table_name==entity)
+            .distinct()
+            .all()
+        )
+
+        logger.debug(f"Consultando lista de id de registros: {rows}")
+
+        return [
+            {
+                "record_id": row.record_id,
+            }
+            for row in rows
+        ]
+
+    except Exception as e:
+        logger.error(f"Error obteniendo registros: {e}")
+        return []
