@@ -12,19 +12,20 @@ http:
       type: query
   body:
     type: json
-    data: |-
+    data: |+
       {
         "draw": 1,
         "start": 0,
         "length": 10,
-        "search": { "value": "" },
-        "order": [{ "column": 0, "dir": "asc" }],
-        "columns": [
-          { "data": "id" },
-          { "data": "name" },
-          { "data": "description" }
-        ]
+        "filters": {
+          "table_name": "orders",
+          "action": "delete",
+          "actor_id": 2,
+          "date_from": "2025-01-01",
+          "date_to": "2025-12-31"
+        }
       }
+
   auth:
     type: bearer
     token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiVXN1YXJpbyBQcnVlYmEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTAwMDAwMDB9.dGVzdF9zaWduYXR1cmFfbm9fdmFsaWRh

@@ -18,6 +18,7 @@ def serialize_audit_records(
     out = []
     for r in rows:
         item = {
+            "audit_id":   r.audit_id,
             "event_id":   r.event_id,
             "created_at": r.created_at,
             "actor_id":   r.actor_id,

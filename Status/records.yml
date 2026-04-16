@@ -5,8 +5,11 @@ info:
 
 http:
   method: GET
-  url: http://127.0.0.1:9002/data_bitacora/actions?v=15
+  url: http://127.0.0.1:9002/data_bitacora/records?id=usuarios&v=15
   params:
+    - name: id
+      value: usuarios
+      type: query
     - name: v
       value: "15"
       type: query

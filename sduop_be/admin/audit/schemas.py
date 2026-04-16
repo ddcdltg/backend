@@ -26,6 +26,7 @@ class AuditTable(BaseModel):
 
 class AuditLogOut(BaseModel):
     """Un renglón del datatable (vista agrupada por evento)."""
+    audit_id:      int
     event_id:      str
     created_at:    datetime
     actor_id:      int
