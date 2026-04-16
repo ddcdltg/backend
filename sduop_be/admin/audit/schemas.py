@@ -13,6 +13,8 @@ class AuditTable(BaseModel):
     action: str
     table_name: str
     record_id: int
+    value: str
+    field_name: str
     changes_count: Optional[int] = None
     field_name: Optional[str] = None
     value: Optional[str] = None
