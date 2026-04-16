@@ -18,6 +18,7 @@ def serialize_audit_records(
     out = []
     for r in rows:
         item = {
+
             "audit_id":   r.audit_id,
             "event_id":   r.event_id,
             "created_at": r.created_at,
@@ -30,6 +31,7 @@ def serialize_audit_records(
             "field_name": r.field_name,
             "value":      r.value,
             "meta":       r.meta,
+            
         }
         if current_user is not None:
             item["permissions"] = ["*"] if case == 1 else []

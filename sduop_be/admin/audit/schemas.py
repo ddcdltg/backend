@@ -13,8 +13,6 @@ class AuditTable(BaseModel):
     action: str
     table_name: str
     record_id: int
-    value: str
-    field_name: str
     changes_count: Optional[int] = None
     field_name: Optional[str] = None
     value: Optional[str] = None
@@ -36,6 +34,8 @@ class AuditLogOut(BaseModel):
     ip_address:    Optional[str] = None
     action:        str
     table_name:    str
+    value: str
+    field_name: str
     record_id:     Optional[int] = None
     changes_count: Optional[int] = None
     meta:          Optional[str] = None
