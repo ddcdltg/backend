@@ -27,6 +27,8 @@ def serialize_audit_records(
             "action":     r.action,
             "table_name": r.table_name,
             "record_id":  r.record_id,
+            "field_name": r.field_name,
+            "value":      r.value,
             "meta":       r.meta,
         }
         if current_user is not None:
